@@ -1,0 +1,24 @@
+{
+  "name": "image-proxessor",
+  "version": "0.1.0",
+  "description": "Proxy images through Express middleware to resize them. Currently makes use of Lovell Fuller's excellent Sharp library to perform the processsing.",
+  "main": "resizer.js",
+  "scripts": {
+    "test": "node example.js",
+    "start": "node example.js"
+  },
+  "keywords": [
+    "images",
+    "resize"
+  ],
+  "author": "Tanner Mickelson",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.17.1",
+    "sharp": "^0.18.4"
+  },
+  "devDependencies": {
+    "express": "^4.16.2",
+    "opn": "^5.1.0"
+  }
+}

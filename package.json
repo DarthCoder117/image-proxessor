@@ -1,17 +1,36 @@
 {
   "name": "image-proxessor",
-  "version": "0.1.0",
+  "homepage": "https://github.com/DarthCoder117/image-proxessor",
+  "version": "0.1.1",
   "description": "Proxy images through Express middleware to resize them. Currently makes use of Lovell Fuller's excellent Sharp library to perform the processsing.",
   "main": "resizer.js",
+  "types": "resizer.d.ts",
+  "engines": {
+    "node": ">=7.10.1"
+  },
   "scripts": {
     "test": "node example.js",
     "start": "node example.js"
   },
   "keywords": [
     "images",
-    "resize"
+    "resize",
+    "image processing"
   ],
-  "author": "Tanner Mickelson",
+  "author": {
+    "name": "Tanner Mickelson",
+    "email": "supertanner@gmail.com",
+    "url": "https://github.com/DarthCoder117/"
+  },
+  "contributors": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DarthCoder117/image-proxessor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DarthCoder117/image-proxessor/issues",
+    "email": "supertanner@gmail.com"
+  },
   "license": "MIT",
   "dependencies": {
     "axios": "^0.17.1",

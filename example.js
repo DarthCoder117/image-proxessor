@@ -16,6 +16,66 @@ app.use('/small', resizer('http://localhost:4309/original', {
   }
 }));
 
+app.use('/rotate', resizer('http://localhost:4309/original', {
+  resize: {
+    width: 100,
+    height: 100
+  },
+  transform: {
+    rotate: 90
+  }
+}));
+
+app.use('/flip-x', resizer('http://localhost:4309/original', {
+  resize: {
+    width: 100,
+    height: 100
+  },
+  transform: {
+    flipX: true
+  }
+}));
+
+app.use('/flip-y', resizer('http://localhost:4309/original', {
+  resize: {
+    width: 100,
+    height: 100
+  },
+  transform: {
+    flipY: true
+  }
+}));
+
+app.use('/blur', resizer('http://localhost:4309/original', {
+  resize: {
+    width: 100,
+    height: 100
+  },
+  effects: {
+    blur: true
+  }
+}));
+
+app.use('/blur-more', resizer('http://localhost:4309/original', {
+  resize: {
+    width: 100,
+    height: 100
+  },
+  effects: {
+    blur: 10
+  }
+}));
+
+app.use('/gray', resizer('http://localhost:4309/original', {
+  resize: {
+    width: 100,
+    height: 100
+  },
+  effects: {
+    grayscale: true
+  }
+}));
+
 app.use('/medium', resizer('http://localhost:4309/original', {
   resize: {
     width: 200,
@@ -38,6 +98,18 @@ app.get('/', (req, res) => {
     '    <h1>Resizer Proxy Example</h1>' +
     '    <h2>100x100</h2>' +
     '    <img src="/small/large-image.jpg" />' +
+    '    <h2>Blurred</h2>' +
+    '    <img src="/blur/large-image.jpg" />' +
+    '    <h2>Blurred (more)</h2>' +
+    '    <img src="/blur-more/large-image.jpg" />' +
+    '    <h2>Grayscale</h2>' +
+    '    <img src="/gray/large-image.jpg" />' +
+    '    <h2>Rotate</h2>' +
+    '    <img src="/rotate/large-image.jpg" />' +
+    '    <h2>Flip X</h2>' +
+    '    <img src="/flip-x/large-image.jpg" />' +
+    '    <h2>Flip Y</h2>' +
+    '    <img src="/flip-y/large-image.jpg" />' +
     '    <h2>200x200</h2>' +
     '    <img src="/medium/large-image.jpg" />' +
     '    <h2>500x500</h2>' +

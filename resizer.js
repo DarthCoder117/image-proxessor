@@ -18,10 +18,34 @@ module.exports = function (originalBaseUrl, options) {
     });
 
     // Resize transformer pipes directly to response stream
-    const resizeTransform = sharp()
-      .resize(options.resize.width, options.resize.height);
+    let imageTransform = sharp();
+    // Always resize
+    options.resize = options.resize || { width: null, height: null };
+    imageTransform.resize(options.resize.width, options.resize.height);
+    // Apply other transforms besides resize
+    if (options.transform) {
+      if (options.transform.rotate) {
+        imageTransform.rotate(options.transform.rotate);
+      }
+      if (options.transform.flipX) {
+        imageTransform.flop();
+      }
+      if (options.transform.flipY) {
+        imageTransform.flip();
+      }
+    }
+    // Apply other effects conditionally
+    if (options.effects) {
+      if (options.effects.blur) {
+        // Blur amount can be specified for more extreme blurs, so test if we got a number
+        imageTransform.blur((typeof options.effects.blur === 'number') ? options.effects.blur : undefined);
+      }
+      if (options.effects.grayscale) {
+        imageTransform.grayscale();
+      }
+    }
 
-    const outputStream = result.data.pipe(resizeTransform);
+    const outputStream = result.data.pipe(imageTransform);
     outputStream.on('end', () => res.end());
     outputStream.pipe(res);
   };

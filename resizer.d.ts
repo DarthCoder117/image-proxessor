@@ -29,5 +29,5 @@ declare module 'image-proxessor' {
     options:ProcessingOptions
   ):function;
 
-  export default imageProxessor;
+  export = imageProxessor;
 }

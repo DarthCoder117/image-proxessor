@@ -44,6 +44,20 @@ module.exports = function (originalBaseUrl, options) {
         imageTransform.grayscale();
       }
     }
+    // Setup output formats
+    if (options.output) {
+      switch (options.output.format) {
+        case 'jpeg':
+        case 'jpg':
+          console.log('PROGRSSIVE JPEG:',options.output.progressive);
+          imageTransform.jpeg({ quality: options.output.quality || 80, progressive: options.output.progressive });
+          break;
+        case 'png':
+          console.log('PROGRSSIVE PNG:',options.output.progressive);
+          imageTransform.png({ progressive: options.output.progressive, force: true });
+          break;
+      }
+    }
 
     const outputStream = result.data.pipe(imageTransform);
     outputStream.on('end', () => res.end());

@@ -83,6 +83,29 @@ app.use('/medium', resizer('http://localhost:4309/original', {
   }
 }));
 
+app.use('/progressive-jpeg', resizer('http://localhost:4309/original', {
+  resize: {
+    width: 400,
+    height: 400
+  },
+  output: {
+    format: 'jpeg',
+    progressive: true,
+    quality: 50
+  }
+}));
+
+app.use('/progressive-png', resizer('http://localhost:4309/original', {
+  resize: {
+    width: 400,
+    height: 400
+  },
+  output: {
+    format: 'png',
+    progressive: true
+  }
+}));
+
 app.use('/large', resizer('http://localhost:4309/original', {
   resize: {
     width: 500,
@@ -98,6 +121,10 @@ app.get('/', (req, res) => {
     '    <h1>Resizer Proxy Example</h1>' +
     '    <h2>100x100</h2>' +
     '    <img src="/small/large-image.jpg" />' +
+    '    <h2>400x400 Progressive JPEG (compression 50)</h2>' +
+    '    <img src="/progressive-jpeg/large-image.jpg" />' +
+    '    <h2>400x400 Progressive PNG</h2>' +
+    '    <img src="/progressive-png/large-image.jpg" />' +
     '    <h2>Blurred</h2>' +
     '    <img src="/blur/large-image.jpg" />' +
     '    <h2>Blurred (more)</h2>' +

@@ -8,7 +8,7 @@ declare module 'image-proxessor' {
       width?: number;
       height?: number;
     },
-    transform: {
+    transform?: {
       rotate?: number;
       flipX?: boolean;
       flipY?: boolean;
@@ -16,6 +16,11 @@ declare module 'image-proxessor' {
     effects?: {
       blur?: boolean|number;
       grayscale?: boolean;
+    },
+    output?: {
+      format: string;
+      quality?: number;
+      progressive?: boolean;
     }
   };
 
@@ -24,5 +29,5 @@ declare module 'image-proxessor' {
     options:ProcessingOptions
   ):function;
 
-  export = imageProxessor;
+  export default imageProxessor;
 }

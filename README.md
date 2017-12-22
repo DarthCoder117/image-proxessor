@@ -7,6 +7,8 @@ Proxy images through express middleware to process them before display.
 
 Install through NPM or yarn
 
+[![NPM](https://nodei.co/npm/image-proxessor.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/image-proxessor/)
+
 ```
 npm install --save image-proxessor
 ```

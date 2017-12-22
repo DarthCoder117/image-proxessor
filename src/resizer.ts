@@ -2,13 +2,48 @@
  * Author: Tanner Mickelson
  * License: MIT
  */
-const sharp = require('sharp');
-const axios = require('axios');
 
-module.exports = function (originalBaseUrl, options) {
+import axios from 'axios';
+import * as sharp from 'sharp';
+
+/**
+ * Options for image processing.
+ */
+export interface ProcessingOptions {
+  /**
+   * The base URL where the original images are hosted.
+   */
+  baseUrl:string;
+  resize?: {
+    width?: number;
+    height?: number;
+  },
+  transform?: {
+    rotate?: number;
+    flipX?: boolean;
+    flipY?: boolean;
+  },
+  effects?: {
+    blur?: boolean|number;
+    grayscale?: boolean;
+  },
+  output?: {
+    /**
+     * Either 'jpeg'/'jpg' or 'png'
+     */
+    format: string;
+    quality?: number;
+    progressive?: boolean;
+  }
+};
+
+/**
+ * @return Middleware function that will process the incoming image URL request.
+ */
+export default function (options:ProcessingOptions):(req:any, res:any) => void {
   // Middleware function to act as an image resizer proxy
-  return async (req, res) => {
-    const originalUrl = originalBaseUrl + req.url;
+  return async (req:any, res:any) => {
+    const originalUrl = options.baseUrl + req.url;
 
     // Get stream to image to pipe through resize transformer
     const result = await axios({
@@ -20,7 +55,7 @@ module.exports = function (originalBaseUrl, options) {
     // Resize transformer pipes directly to response stream
     let imageTransform = sharp();
     // Always resize
-    options.resize = options.resize || { width: null, height: null };
+    options.resize = options.resize || { width: undefined, height: undefined };
     imageTransform.resize(options.resize.width, options.resize.height);
     // Apply other transforms besides resize
     if (options.transform) {
@@ -49,11 +84,9 @@ module.exports = function (originalBaseUrl, options) {
       switch (options.output.format) {
         case 'jpeg':
         case 'jpg':
-          console.log('PROGRSSIVE JPEG:',options.output.progressive);
           imageTransform.jpeg({ quality: options.output.quality || 80, progressive: options.output.progressive });
           break;
         case 'png':
-          console.log('PROGRSSIVE PNG:',options.output.progressive);
           imageTransform.png({ progressive: options.output.progressive, force: true });
           break;
       }

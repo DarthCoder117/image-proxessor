@@ -1,4 +1,4 @@
-[![npm](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/image-proxessor)
+[![npm version](https://badge.fury.io/js/image-proxessor.svg)](https://badge.fury.io/js/image-proxessor)
 
 # image-proxessor
 Proxy images through express middleware to process them before display.

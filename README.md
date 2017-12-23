@@ -1,8 +1,9 @@
+![Alt image-proxessor](image-proxessor.png?raw=true "image-proxessor")
+
 [![npm](https://img.shields.io/npm/v/image-proxessor.svg)](https://www.npmjs.com/package/image-proxessor)
 [![Node version](https://img.shields.io/node/v/image-proxessor.svg?style=flat)](http://nodejs.org/download/)
 [![npm](https://img.shields.io/npm/l/image-proxessor.svg)](https://github.com/DarthCoder117/image-proxessor/blob/master/LICENSE)
 
-# image-proxessor
 Express middleware to resize images on-demand as they're retrieved. Currently uses Lovell Fuller's excellent sharp library for processing. No more generating a ton of different thumbnails at upload time. Just send your image through image-proxessor and receive the processed image on the other end.
 
 ## Usage

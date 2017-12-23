@@ -3,7 +3,7 @@
 [![npm](https://img.shields.io/npm/l/image-proxessor.svg)](https://github.com/DarthCoder117/image-proxessor/blob/master/LICENSE)
 
 # image-proxessor
-Proxy images through express middleware to process them before display.
+Express middleware to resize images on-demand as they're retrieved. Currently uses Lovell Fuller's excellent sharp library for processing. No more generating a ton of different thumbnails at upload time. Just send your image through image-proxessor and receive the processed image on the other end.
 
 ## Usage
 

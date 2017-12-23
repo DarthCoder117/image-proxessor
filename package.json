@@ -1,7 +1,7 @@
 {
   "name": "image-proxessor",
   "homepage": "https://github.com/DarthCoder117/image-proxessor",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Proxy images through Express middleware to resize them. Currently makes use of Lovell Fuller's excellent Sharp library to perform the processsing.",
   "main": "./build/resizer.js",
   "types": "./build/resizer.d.ts",
